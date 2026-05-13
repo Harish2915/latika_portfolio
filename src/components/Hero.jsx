@@ -7,7 +7,7 @@ import {
   FaPalette
 } from "react-icons/fa";
 
-import profile from "../assets/profile1.jpg";
+import profile from "../../public/profile1.jpg";
 
 function Hero() {
   return (
