@@ -82,7 +82,7 @@ function Hero() {
                 Latika S
               </h3>
 
-              <p>Application Developer</p>
+              <p>Mobile Application Developer</p>
 
             </div>
 
