@@ -89,16 +89,16 @@ function Hero() {
 
             {/* Floating Icons */}
 
-            {/* <div className="floating-icon icon1">
-              <FaCode />
-            </div> */}
-
             <div className="floating-icon icon1">
-              <FaReact />
+              <FaCode />
             </div>
 
             <div className="floating-icon icon2">
               <FaFlutter />
+            </div>
+
+            <div className="floating-icon icon3">
+              <FaReact />
             </div>
 
           </div>
