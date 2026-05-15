@@ -1289,3 +1289,37 @@ footer {
   }
 }
 
+
+/* ========================= */
+/* JUSTIFY ABOUT CONTENT */
+/* ========================= */
+
+#about p {
+  text-align: justify;
+  padding: 10px;
+}
+
+/* ========================= */
+/* CENTER QUICK INFO */
+/* ========================= */
+
+.glass-card h2 {
+  text-align: center;
+}
+
+/* MOBILE FIX */
+
+@media (max-width: 768px) {
+
+  #about h3 {
+    text-align: center;
+  }
+
+  #about p {
+    text-align: justify;
+  }
+
+  .glass-card {
+    margin-top: 10px;
+  }
+}

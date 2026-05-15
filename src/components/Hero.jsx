@@ -8,7 +8,7 @@ import {
   FaReact,
 } from "react-icons/fa";
 import { FaFlutter } from "react-icons/fa6";
-import profile from "../../public/profile1.jpg";
+import profile from "../../public/download.jpg";
 
 function Hero() {
   return (
@@ -89,16 +89,16 @@ function Hero() {
 
             {/* Floating Icons */}
 
-            <div className="floating-icon icon1">
+            {/* <div className="floating-icon icon1">
               <FaCode />
+            </div> */}
+
+            <div className="floating-icon icon1">
+              <FaReact />
             </div>
 
             <div className="floating-icon icon2">
               <FaFlutter />
-            </div>
-
-            <div className="floating-icon icon3">
-              <FaReact />
             </div>
 
           </div>
