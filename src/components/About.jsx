@@ -39,7 +39,7 @@ function About() {
 
             <p className="fs-5 text-secondary about-text">
               I'm a passionate <span className="text-primary fw-bold">
-                Full Stack & Mobile Application Developer
+                Mobile Application Developer
               </span> who enjoys building scalable applications
               and solving real-world problems through technology.
               A continuous learner with strong collaboration skills,
