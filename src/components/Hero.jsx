@@ -4,9 +4,10 @@ import {
   FaArrowRight,
   FaCode,
   FaLaptopCode,
-  FaPalette
+  FaPalette,
+  FaReact,
 } from "react-icons/fa";
-
+import { FaFlutter } from "react-icons/fa6";
 import profile from "../../public/profile1.jpg";
 
 function Hero() {
@@ -24,13 +25,13 @@ function Hero() {
             </h1>
 
             <h2 className="hero-sub">
-              Building Beautiful Digital Experiences
+              Turning Ideas into Smart Mobile Applications
             </h2>
 
             <p className="hero-text">
-              Passionate about crafting responsive,
-              animated and high-performance applications
-              with modern UI/UX experiences.
+              Passionate mobile application developer focused on building
+              smooth, user-friendly, and high-performance apps with
+              modern designs and real-world functionality.
             </p>
 
             <div className="hero-buttons">
@@ -93,11 +94,11 @@ function Hero() {
             </div>
 
             <div className="floating-icon icon2">
-              <FaLaptopCode />
+              <FaFlutter />
             </div>
 
             <div className="floating-icon icon3">
-              <FaPalette />
+              <FaReact />
             </div>
 
           </div>
