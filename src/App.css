@@ -1305,6 +1305,7 @@ footer {
 
 .glass-card h2 {
   text-align: center;
+  padding: 20px;
 }
 
 /* MOBILE FIX */
@@ -1603,4 +1604,95 @@ footer {
   border-color: rgba(255,255,255,0.24);
 
   transform: translateY(-2px);
+}
+
+/* ========================= */
+/* MOBILE OVERFLOW FIX */
+/* ========================= */
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+/* HERO SECTION */
+
+.hero-section,
+#home {
+  overflow: hidden;
+}
+
+/* HERO CONTENT */
+
+.hero-content {
+  width: 100%;
+  max-width: 100%;
+  padding: 0 20px;
+}
+
+/* HEADING */
+
+.hero-title {
+  font-size: clamp(40px, 10vw, 72px);
+
+  line-height: 1.1;
+
+  word-break: break-word;
+}
+
+/* TEXT */
+
+.hero-text,
+.hero-subtitle {
+  width: 100%;
+  max-width: 100%;
+
+  font-size: 16px;
+
+  line-height: 1.8;
+}
+
+/* BUTTONS */
+
+.hero-buttons {
+  width: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 16px;
+}
+
+.hero-buttons a,
+.hero-buttons button {
+
+  width: 100%;
+
+  max-width: 330px;
+
+  margin: auto;
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+  .hero-section,
+  #home {
+
+    padding-top: 110px;
+
+    text-align: center;
+  }
+
+  .hero-title {
+
+    font-size: 52px;
+  }
+
+  .hero-subtitle {
+
+    font-size: 30px;
+  }
 }

@@ -12,12 +12,16 @@ import {
   FaDatabase,
 } from "react-icons/fa";
 
+import { FaFlutter } from "react-icons/fa6";
+import { TbBrandFlutter } from "react-icons/tb";
+
 import {
   SiFastapi,
   SiMysql,
   SiPostman,
   SiGraphql,
   SiSqlalchemy,
+  SiSelenium,
 } from "react-icons/si";
 
 
@@ -26,64 +30,81 @@ import {
   HiOutlineCodeBracket,
   HiOutlineServerStack,
   HiOutlineWrenchScrewdriver,
+  HiOutlineCloud,
+  HiOutlineMagnifyingGlass,
 } from "react-icons/hi2";
+
+import { 
+  IoGitPullRequestSharp 
+} from "react-icons/io5";
 
 function Skills() {
 
   const skillGroups = [
 
-    {
-      title: "Languages",
-      icon: <HiOutlineGlobeAlt />,
-      skills: [
-        { icon: <FaPython />, name: "Python" },
-        { icon: <FaJs />, name: "JavaScript" },
-        { icon: <FaDatabase />, name: "SQL" },
-      ],
-    },
+  {
+    title: "Programming Languages",
+    icon: <HiOutlineGlobeAlt />,
+    skills: [
+      { icon: <FaPython />, name: "Python" },
+      { icon: <FaDatabase />, name: "SQL" },
+      { icon: <FaJs />, name: "JavaScript" },
+    ],
+  },
 
-    {
-      title: "Frontend",
-      icon: <FaReact />,
-      skills: [
-        { icon: <FaHtml5 />, name: "HTML" },
-        { icon: <FaCss3Alt />, name: "CSS" },
-        { icon: <FaReact />, name: "React.js" },
-        { icon: <FaBootstrap />, name: "Bootstrap" },
-      ],
-    },
+  {
+    title: "Mobile Development",
+    icon: <FaReact />,
+    skills: [
+      { icon: <FaReact />, name: "React Native" },
+      { icon: <FaFlutter />, name: "Flutter" },
+      { icon: <HiOutlineCodeBracket />, name: "Dart" },
+    ],
+  },
 
-    {
-      title: "Backend",
-      icon: <HiOutlineServerStack />,
-      skills: [
-        { icon: <SiFastapi />, name: "FastAPI" },
-        { icon: <HiOutlineCodeBracket />, name: "REST APIs" },
-        { icon: <SiGraphql />, name: "GraphQL" },
-        { icon: <SiSqlalchemy />, name: "SQLAlchemy" },
-      ],
-    },
+  {
+    title: "Backend Technologies",
+    icon: <HiOutlineServerStack />,
+    skills: [
+      { icon: <SiFastapi />, name: "FastAPI" },
+      { icon: <HiOutlineServerStack />, name: "REST API" },
+    ],
+  },
 
-    {
-      title: "Database",
-      icon: <FaDatabase />,
-      skills: [
-        { icon: <SiMysql />, name: "MySQL" },
-      ],
-    },
+  {
+    title: "Automation",
+    icon: <HiOutlineCodeBracket />,
+    skills: [
+      { icon: <HiOutlineMagnifyingGlass />, name: "BeautifulSoup" },
+      { icon: <HiOutlineCloud />, name: "Apify API" },
+      { icon: <IoGitPullRequestSharp />, name: "Requests" },
+      { icon: <SiSelenium />, name: "Selenium" },
+    ],
+  },
 
-    {
-      title: "Tools",
-      icon: <HiOutlineWrenchScrewdriver />,
-      skills: [
-        { icon: <FaGitAlt />, name: "Git" },
-        { icon: <FaGithub />, name: "GitHub" },
-        { icon: <SiPostman />, name: "Postman" },
-        { icon: <SiMysql />, name: "Workbench" },
-      ],
-    },
+  {
+    title: "Generative AI",
+    icon: <HiOutlineCodeBracket />,
+    skills: [
+      { icon: <HiOutlineCodeBracket />, name: "LLMs" },
+      { icon: <HiOutlineCodeBracket />, name: "RAG" },
+    ],
+  },
 
-  ];
+  {
+    title: "Tools",
+    icon: <HiOutlineWrenchScrewdriver />,
+    skills: [
+      { icon: <FaGitAlt />, name: "Git" },
+      { icon: <SiPostman />, name: "Postman" },
+      { icon: <HiOutlineCodeBracket />, name: "VS Code" },
+      { icon: <HiOutlineCodeBracket />, name: "Android Studio" },
+      { icon: <HiOutlineCodeBracket />, name: "Xcode" },
+      { icon: <HiOutlineCodeBracket />, name: "PyCharm" },
+    ],
+  },
+
+];
 
   return (
     <section id="skills" className="skills-section">
