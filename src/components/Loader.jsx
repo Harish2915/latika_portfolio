@@ -1,4 +1,5 @@
 // src/components/Loader.jsx
+import "../styles/Loader.css";
 
 function Loader() {
   return (

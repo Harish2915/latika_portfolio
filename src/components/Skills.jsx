@@ -44,6 +44,7 @@ import {
 import {
   IoGitPullRequestSharp
 } from "react-icons/io5";
+import "../styles/Skills.css";
 
 function Skills() {
 
@@ -56,6 +57,7 @@ function Skills() {
         { icon: <FaPython />, name: "Python" },
         { icon: <FaDatabase />, name: "SQL" },
         { icon: <FaJs />, name: "JavaScript" },
+        { icon: <HiOutlineCodeBracket />, name: "Dart" },
       ],
     },
 
@@ -65,7 +67,6 @@ function Skills() {
       skills: [
         { icon: <FaReact />, name: "React Native" },
         { icon: <FaFlutter />, name: "Flutter" },
-        { icon: <HiOutlineCodeBracket />, name: "Dart" },
       ],
     },
 

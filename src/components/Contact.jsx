@@ -1,4 +1,5 @@
 // src/components/Contact.jsx
+import "../styles/Contact.css";
 
 function Contact() {
   return (

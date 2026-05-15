@@ -1,0 +1,167 @@
+/* ========================= */
+/* ABOUT SECTION FIX */
+/* ========================= */
+
+#about .display-5,
+#about h1,
+#about h2,
+#about h3 {
+  color: #111 !important;
+  font-weight: 800;
+}
+
+/* SUB TEXT */
+
+#about p {
+  color: #3f3f46 !important;
+  line-height: 1.9;
+  font-size: 18px;
+}
+
+/* HIGHLIGHT */
+
+#about .text-primary {
+  color: #ff4f87 !important;
+  font-weight: 700;
+}
+
+/* ========================= */
+/* COMPACT GLASS CARD */
+/* ========================= */
+
+.glass-card {
+  background: rgba(255,255,255,0.18);
+  backdrop-filter: blur(12px);
+  border-radius: 24px;
+  padding: 24px;
+  width: 100%;
+  border: none;
+  box-shadow:
+    0 8px 24px rgba(255, 93, 143, 0.08);
+}
+
+/* GRID SPACING */
+
+.glass-card .row {
+  row-gap: 16px;
+}
+
+/* SAME SIZE */
+
+.glass-card .col-md-6 {
+  display: flex;
+}
+
+/* ========================= */
+/* INFO CARD */
+/* ========================= */
+
+.info-card {
+  width: 100%;
+  height: 100%;
+  min-height: 85px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.22);
+  border: none;
+  transition: 0.35s ease;
+  box-shadow:
+    0 4px 12px rgba(255, 93, 143, 0.04);
+}
+
+.info-card:hover {
+  transform: translateY(-4px);
+  background: rgba(255,255,255,0.34);
+}
+
+/* ICON */
+
+.info-icon {
+  font-size: 22px;
+  color: #ff4f87;
+  flex-shrink: 0;
+}
+
+/* CONTENT */
+
+.info-card div {
+  flex: 1;
+}
+
+.info-card small {
+  display: block;
+  font-size: 12px;
+  color: #555;
+  margin-bottom: 2px;
+}
+
+/* LINK */
+
+.info-card a {
+  color: #ff4f87;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+/* ========================= */
+/* MOBILE */
+/* ========================= */
+
+@media (max-width: 768px) {
+  .glass-card {
+    padding: 18px;
+    border-radius: 20px;
+  }
+
+  .info-card {
+    min-height: 78px;
+    padding: 14px 16px;
+  }
+
+  .info-card a {
+    font-size: 14px;
+  }
+
+  .info-icon {
+    font-size: 20px;
+  }
+}
+
+/* ========================= */
+/* JUSTIFY ABOUT CONTENT */
+/* ========================= */
+
+#about p {
+  text-align: justify;
+  padding: 10px;
+}
+
+/* ========================= */
+/* CENTER QUICK INFO */
+/* ========================= */
+
+.glass-card h2 {
+  text-align: center;
+  padding: 20px;
+}
+
+/* MOBILE FIX */
+
+@media (max-width: 768px) {
+  #about h3 {
+    text-align: center;
+  }
+
+  #about p {
+    text-align: justify;
+  }
+
+  .glass-card {
+    margin-top: 10px;
+  }
+}

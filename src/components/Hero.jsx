@@ -9,6 +9,7 @@ import {
 } from "react-icons/fa";
 import { FaFlutter } from "react-icons/fa6";
 import profile from "../../public/profile1.jpg";
+import "../styles/Hero.css";
 
 function Hero() {
   return (

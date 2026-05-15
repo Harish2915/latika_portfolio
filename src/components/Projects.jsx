@@ -1,4 +1,5 @@
 // src/components/Projects.jsx
+import "../styles/Projects.css";
 
 function Projects() {
 

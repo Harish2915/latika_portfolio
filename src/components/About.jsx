@@ -6,6 +6,7 @@ import {
   FaWhatsapp,
   FaLinkedin,
 } from "react-icons/fa";
+import "../styles/About.css";
 
 function About() {
   return (
