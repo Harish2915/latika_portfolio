@@ -492,7 +492,7 @@ body.modal-open {
 
   .pm-overlay {
     padding: 12px;
-    align-items: flex-start;
+    align-items: center;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
   }
