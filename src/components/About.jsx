@@ -21,7 +21,7 @@ function About() {
 
           <p className="text-secondary fs-5 mt-3 justify-content-center d-flex align-items-center gap-2">
             A passionate developer crafting digital solutions
-            with modern technologies
+            with modern technologies.
           </p>
         </div>
 
@@ -38,7 +38,7 @@ function About() {
               Personal Profile
             </h3>
 
-            <p className="fs-5 text-secondary about-text">
+            <p className="fs-5 text-secondary about-text ">
               I'm a passionate <span className="text-primary fw-bold">
                 Mobile Application Developer
               </span> who enjoys building scalable applications
