@@ -10,16 +10,6 @@
   overflow: hidden;
 }
 
-.hero-tag {
-  display: inline-block;
-  padding: 10px 20px;
-  background: rgba(255,255,255,0.3);
-  border-radius: 50px;
-  margin-bottom: 25px;
-  font-weight: 600;
-  backdrop-filter: blur(10px);
-}
-
 .hero-title {
   font-size: 80px;
   font-weight: 800;
@@ -50,16 +40,20 @@
   flex-wrap: wrap;
 }
 
-.hero-btn {
+.hero-btn,
+.hero-outline-btn {
   padding: 16px 35px;
   border-radius: 50px;
+  font-weight: 600;
+  transition: 0.4s;
+}
+
+.hero-btn {
   background: var(--pink5);
   color: white;
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-weight: 600;
-  transition: 0.4s;
 }
 
 .hero-btn:hover {
@@ -68,12 +62,8 @@
 }
 
 .hero-outline-btn {
-  padding: 16px 35px;
-  border-radius: 50px;
   border: 2px solid var(--pink5);
   color: var(--pink5);
-  font-weight: 600;
-  transition: 0.4s;
 }
 
 .hero-outline-btn:hover {
@@ -82,7 +72,7 @@
 }
 
 /* ========================= */
-/* RIGHT SIDE */
+/* RIGHT SECTION */
 /* ========================= */
 
 .hero-card {
@@ -105,11 +95,7 @@
   height: 170px;
   border-radius: 50%;
   padding: 6px;
-  background: linear-gradient(
-    135deg,
-    var(--pink5),
-    var(--pink7)
-  );
+  background: linear-gradient(135deg, var(--pink5), var(--pink7));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -124,34 +110,22 @@
   border-radius: 50%;
 }
 
-/* ========================= */
-/* GLOW */
-/* ========================= */
-
 .hero-glow {
   position: absolute;
   width: 450px;
   height: 450px;
-  background: radial-gradient(
-    circle,
-    rgba(255,93,143,0.35),
-    transparent 70%
-  );
+  background: radial-gradient(circle, rgba(255, 93, 143, 0.35), transparent 70%);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1;
 }
 
-/* ========================= */
-/* FLOATING ICONS */
-/* ========================= */
-
 .floating-icon {
   position: absolute;
   width: 70px;
   height: 70px;
-  background: rgba(255,255,255,0.25);
+  background: rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(10px);
   border-radius: 20px;
   display: flex;
@@ -166,6 +140,7 @@
 .icon1 {
   top: 10%;
   left: 10%;
+  animation-delay: 2s;
 }
 
 .icon2 {
@@ -174,20 +149,10 @@
   animation-delay: 1s;
 }
 
-.icon3 {
-  bottom: 10%;
-  left: 20%;
-  animation-delay: 2s;
-}
-
-/* ========================= */
-/* RINGS */
-/* ========================= */
-
 .ring {
   position: absolute;
   border-radius: 50%;
-  border: 2px dashed rgba(255,255,255,0.5);
+  border: 2px dashed rgba(255, 255, 255, 0.5);
   animation: rotateRing 15s linear infinite;
 }
 
@@ -197,6 +162,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  animation-direction: reverse;
 }
 
 .ring2 {
@@ -213,26 +179,24 @@
 /* ========================= */
 
 @keyframes floatCard {
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
+  0%,
   100% {
     transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-20px);
   }
 }
 
 @keyframes floatIcon {
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-15px);
-  }
+  0%,
   100% {
     transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-15px);
   }
 }
 
@@ -240,35 +204,53 @@
   from {
     transform: translate(-50%, -50%) rotate(0deg);
   }
+
   to {
     transform: translate(-50%, -50%) rotate(360deg);
   }
 }
 
 /* ========================= */
-/* RESPONSIVE */
+/* TABLET RESPONSIVE */
 /* ========================= */
 
-@media (max-width: 992px) {
+@media (max-width: 1024px) {
   .hero {
     text-align: center;
     padding-top: 120px;
+    padding-bottom: 120px;
+  }
+
+  .hero .row {
+    row-gap: 80px;
   }
 
   .hero-title {
     font-size: 55px;
+    margin-top: 30px;
+    line-height: 1.2;
   }
 
   .hero-sub {
     font-size: 24px;
+    text-align: center;
+  }
+
+  .hero-text {
+    text-align: center;
+    margin: 30px auto;
+    max-width: 650px;
+    padding: 0 15px;
   }
 
   .hero-buttons {
     justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 50px;
   }
 
   .hero-card {
-    margin-top: 80px;
+    margin-top: 40px;
     width: 280px;
     height: 280px;
   }
@@ -284,91 +266,49 @@
   }
 }
 
+/* ========================= */
+/* MOBILE RESPONSIVE */
+/* ========================= */
+
+@media (max-width: 768px) {
+  /* .hero .container {
+    padding-left: 35px;
+    padding-right: 35px;
+  } */
+
+  .hero-title {
+    margin-top: 40px;
+  }
+
+  .hero-buttons {
+    margin-top: 40px;
+    margin-bottom: 30px;
+  }
+
+  .hero-card {
+    margin-top: 15px;
+  }
+}
+
 @media (max-width: 576px) {
   .hero-title {
     font-size: 42px;
+    text-align: center;
   }
 
   .hero-sub {
     font-size: 20px;
+    text-align: center;
+    line-height: 1.5;
   }
 
   .hero-text {
-    font-size: 15px;
+    font-size: 18px;
+    text-align: justify;
+    line-height: 1.9;
+    margin-top: 25px;
   }
 
-  .floating-icon {
-    width: 55px;
-    height: 55px;
-    font-size: 24px;
-  }
-}
-
-/* MOBILE HERO SPACING FIX */
-
-@media (max-width: 768px) {
-  .hero {
-    padding-bottom: 120px !important;
-  }
-
-  .hero .container {
-    padding-left: 35px !important;
-    padding-right: 35px !important;
-  }
-
-  .hero-title {
-    margin-top: 40px !important;
-  }
-
-  .hero-buttons {
-    margin-top: 40px !important;
-    margin-bottom: 80px !important;
-  }
-
-  .hero-card {
-    margin-top: 90px !important;
-  }
-}
-
-/* TAB + MOBILE SPACING FIX */
-
-@media (max-width: 1024px) {
-  .hero {
-    padding-bottom: 120px !important;
-  }
-
-  .hero .container {
-    padding-left: 40px !important;
-    padding-right: 40px !important;
-  }
-
-  .hero .row {
-    row-gap: 80px;
-  }
-
-  .hero-title {
-    margin-top: 30px !important;
-    line-height: 1.2;
-  }
-
-  .hero-text {
-    padding: 0 15px;
-  }
-
-  .hero-buttons {
-    margin-top: 40px !important;
-    margin-bottom: 60px !important;
-    justify-content: center;
-  }
-
-  .hero-card {
-    margin-top: 40px !important;
-  }
-}
-
-/* MOBILE */
-
-@media (max-width: 576px) {
   .hero-buttons {
     flex-direction: column;
     width: 100%;
@@ -380,11 +320,10 @@
     justify-content: center;
     text-align: center;
   }
-}
 
-/* HERO SECTION */
-
-.hero-section,
-#home {
-  overflow: hidden;
+  .floating-icon {
+    width: 55px;
+    height: 55px;
+    font-size: 24px;
+  }
 }

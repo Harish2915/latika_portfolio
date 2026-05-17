@@ -26,7 +26,7 @@ function Hero() {
             </h1>
 
             <h2 className="hero-sub">
-              Turning Ideas into Smart Mobile Applications
+              I'm Turning Ideas into Smart Mobile Applications
             </h2>
 
             <p className="hero-text">
