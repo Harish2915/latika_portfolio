@@ -65,7 +65,8 @@ function Navbar() {
             },
 
             {
-                threshold: 0.5,
+                threshold: 0.2,
+                rootMargin: "-100px 0px -100px 0px",
             }
         );
 
@@ -151,8 +152,8 @@ function Navbar() {
                             <li className="nav-item">
                                 <a
                                     className={`nav-link ${activeSection === "about"
-                                            ? "active-link"
-                                            : ""
+                                        ? "active-link"
+                                        : ""
                                         }`}
                                     href="#about"
                                     onClick={closeMenu}
@@ -164,8 +165,8 @@ function Navbar() {
                             <li className="nav-item">
                                 <a
                                     className={`nav-link ${activeSection === "skills"
-                                            ? "active-link"
-                                            : ""
+                                        ? "active-link"
+                                        : ""
                                         }`}
                                     href="#skills"
                                     onClick={closeMenu}
@@ -177,8 +178,8 @@ function Navbar() {
                             <li className="nav-item">
                                 <a
                                     className={`nav-link ${activeSection === "projects"
-                                            ? "active-link"
-                                            : ""
+                                        ? "active-link"
+                                        : ""
                                         }`}
                                     href="#projects"
                                     onClick={closeMenu}
@@ -190,8 +191,8 @@ function Navbar() {
                             <li className="nav-item">
                                 <a
                                     className={`nav-link ${activeSection === "contact"
-                                            ? "active-link"
-                                            : ""
+                                        ? "active-link"
+                                        : ""
                                         }`}
                                     href="#contact"
                                     onClick={closeMenu}
