@@ -1,7 +1,7 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=Playwrite+GB+J+Guides:ital@0;1&family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&display=swap');
+
 /* ========================= */
-/* ROOT VARIABLES */
+/* ROOT VARIABLES            */
 /* ========================= */
 
 :root {
@@ -14,18 +14,23 @@
   --pink7: #ffacc5;
   --pink8: #ffcad4;
   --pink9: #f4acb7;
-  --dark: #222;
+  --dark:  #222;
+}
+
+#root {
+  min-height: 100vh;
+
+  background: inherit;
 }
 
 /* ========================= */
-/* GLOBAL RESET */
+/* GLOBAL RESET              */
 /* ========================= */
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* font-family: 'Outfit', sans-serif; */
   font-family: "Playwrite GB S", cursive;
 }
 
@@ -34,24 +39,50 @@ body {
   overflow-x: hidden;
 }
 
+html {
+  scroll-behavior: smooth;
+  scrollbar-gutter: stable;
+
+  background-color: var(--pink3);
+
+  background-image:
+    linear-gradient(
+      135deg,
+      var(--pink1),
+      var(--pink3),
+      var(--pink5)
+    );
+
+  min-height: 100%;
+}
+
+/*
+  SCROLL LOCK — DO NOT ADD modal-open RULES HERE.
+  Handled entirely by Projects.css via position:fixed + top:var(--modal-scroll-y).
+  Any overflow:hidden / height:100vh here will conflict and break scroll restoration.
+*/
+
 /* ========================= */
-/* GLOBAL BODY STYLES */
+/* GLOBAL BODY STYLES        */
 /* ========================= */
 
 body {
-  background: linear-gradient(
-    135deg,
-    var(--pink1),
-    var(--pink3),
-    var(--pink5)
-  );
+  background-color: var(--pink3);
+
+  background-image:
+    linear-gradient(
+      135deg,
+      var(--pink1),
+      var(--pink3),
+      var(--pink5)
+    );
+
   min-height: 100vh;
-  /* font-family: 'Outfit', sans-serif; */
   font-family: "Playwrite GB S", cursive;
 }
 
 /* ========================= */
-/* REUSABLE UTILITIES */
+/* REUSABLE UTILITIES        */
 /* ========================= */
 
 section {
@@ -75,13 +106,7 @@ section {
 }
 
 /* ========================= */
-/* GLOBAL ANIMATIONS */
-/* ========================= */
-
-/* No global animations */
-
-/* ========================= */
-/* RESPONSIVE GLOBALS */
+/* RESPONSIVE GLOBALS        */
 /* ========================= */
 
 @media (max-width: 768px) {

@@ -48,36 +48,59 @@ function Navbar() {
 
     useEffect(() => {
 
-        const sections = document.querySelectorAll("section");
+        const handleScroll = () => {
 
-        const observer = new IntersectionObserver(
+            /* STOP UPDATING DURING MODAL */
 
-            (entries) => {
-
-                entries.forEach((entry) => {
-
-                    if (entry.isIntersecting) {
-                        setActiveSection(entry.target.id);
-                    }
-
-                });
-
-            },
-
-            {
-                threshold: 0.2,
-                rootMargin: "-100px 0px -100px 0px",
+            if (
+                document.body.classList.contains("modal-open")
+            ) {
+                return;
             }
+
+            const sections =
+                document.querySelectorAll("section");
+
+            let current = "home";
+
+            sections.forEach((section) => {
+
+                const sectionTop =
+                    section.offsetTop - 140;
+
+                const sectionHeight =
+                    section.offsetHeight;
+
+                if (
+                    window.scrollY >= sectionTop &&
+                    window.scrollY <
+                    sectionTop + sectionHeight
+                ) {
+                    current = section.id;
+                }
+
+            });
+
+            setActiveSection(current);
+
+        };
+
+        window.addEventListener(
+            "scroll",
+            handleScroll
         );
 
-        sections.forEach((section) => {
-            observer.observe(section);
-        });
+        /* INITIAL CHECK */
+
+        handleScroll();
 
         return () => {
-            sections.forEach((section) => {
-                observer.unobserve(section);
-            });
+
+            window.removeEventListener(
+                "scroll",
+                handleScroll
+            );
+
         };
 
     }, []);

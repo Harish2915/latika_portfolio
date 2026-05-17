@@ -1,13 +1,571 @@
 /* ========================= */
-/* PROJECTS */
+/* SCROLL LOCK               */
+/* ========================= */
+
+/*
+  FIX FOR PINK BACKGROUND BLEED:
+  When body gets position:fixed, the <html> element becomes the scroll
+  container and its background becomes visible. If html has no explicit
+  background, the browser may show transparent/inherited styles which,
+  combined with the modal portal's gradient, produces the pink wash.
+  html.modal-open gets an explicit neutral background to block this.
+*/
+
+html.modal-open {
+  overflow: hidden;
+  /* padding-right: var(--scrollbar-width, 0px); */
+  /* Prevent html background from bleeding through when body is fixed */
+  background: inherit;
+}
+
+body.modal-open {
+  position: fixed;
+  /* padding-right: var(--scrollbar-width, 0px); */
+  top: var(--modal-scroll-y, 0px);
+  /* pins page at exact scroll offset */
+  left: 0;
+  right: 0;
+  width: 100%;
+  overflow: hidden;
+  /* Mobile: block overscroll/bounce and touch scroll bleed */
+  touch-action: none;
+  overscroll-behavior: none;
+}
+
+/* ========================= */
+/* PROJECT SECTION           */
+/* ========================= */
+
+.projects-section {
+  padding: 30px 0;
+  position: relative;
+}
+
+/* ========================= */
+/* CARD                      */
 /* ========================= */
 
 .project-card {
-  padding: 40px;
-  transition: 0.4s;
-  will-change: transform;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 38px;
+  background: rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  transition: transform 0.45s ease, box-shadow 0.45s ease;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
 }
 
 .project-card:hover {
-  transform: translateY(-10px);
+  transform: translateY(-16px);
+  box-shadow: 0 35px 70px rgba(255, 93, 143, 0.25);
+}
+
+/* ========================= */
+/* CARD IMAGE                */
+/* ========================= */
+
+.project-image-wrapper {
+  position: relative;
+  padding: 18px 18px 0;
+  overflow: visible;
+}
+
+.project-img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 28px;
+  background: white;
+  padding: 10px;
+  transition: transform 0.6s ease, box-shadow 0.6s ease, filter 0.6s ease;
+  transform: perspective(1200px) rotateX(4deg);
+  box-shadow:
+    0 20px 45px rgba(0, 0, 0, 0.12),
+    0 8px 20px rgba(255, 93, 143, 0.12),
+    inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  filter: contrast(1.05) saturate(1.08);
+}
+
+.project-card:hover .project-img {
+  transform: perspective(1200px) rotateX(0deg) translateY(-6px) scale(1.03);
+  box-shadow:
+    0 30px 60px rgba(255, 93, 143, 0.25),
+    0 18px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* ========================= */
+/* CARD CONTENT              */
+/* ========================= */
+
+.project-content {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.project-top {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.project-number {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ff4f8b;
+}
+
+.project-line {
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(to right, #ff4f8b, transparent);
+}
+
+.project-content h3 {
+  font-size: 42px;
+  line-height: 1.05;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 18px;
+}
+
+.project-content p {
+  font-size: 18px;
+  line-height: 1.8;
+  color: rgba(0, 0, 0, 0.7);
+  margin-bottom: 24px;
+}
+
+/* ========================= */
+/* CARD TAGS                 */
+/* ========================= */
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: auto;
+}
+
+.project-tags span {
+  padding: 10px 18px;
+  border-radius: 40px;
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(10px);
+  font-size: 14px;
+  font-weight: 600;
+  color: #111;
+}
+
+/* ========================= */
+/* VIEW BUTTON               */
+/* ========================= */
+
+.project-btn-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 30px 30px;
+}
+
+.project-view-btn {
+  min-width: 130px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #ff4f8b, #ff7aa5);
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+  box-shadow: 0 10px 25px rgba(255, 79, 139, 0.28);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.project-view-btn:hover {
+  transform: translateY(-3px);
+}
+
+/* ========================= */
+/* MODAL OVERLAY             */
+/* ========================= */
+
+/*
+  PINK BLEED FIX:
+  The overlay MUST have pointer-events and a fully opaque-target background
+  once --in is applied. The transition from rgba(0,0,0,0) to rgba(0,0,0,0.72)
+  creates the dark scrim. The modal's pink gradient stays contained inside
+  .pm-modal and never bleeds through the overlay layer.
+
+  Do NOT set any pink/gradient on .pm-overlay — it is purely a dark scrim.
+*/
+
+.pm-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: transparent;
+  /* backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px); */
+  transition:
+    background 0.28s ease;
+  /* backdrop-filter 0.28s ease,
+    -webkit-backdrop-filter 0.28s ease; */
+  will-change: background, backdrop-filter;
+}
+
+.pm-overlay--in {
+  background: rgba(0, 0, 0, 0.72);
+  /* backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px); */
+}
+
+/* ========================= */
+/* MODAL BOX                 */
+/* ========================= */
+
+.pm-modal {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  max-height: 88vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  border-radius: 40px;
+  /*
+    The pink gradient lives HERE inside the modal box, not on the overlay.
+    This is correct — it should never escape .pm-modal boundaries.
+  */
+  background: linear-gradient(135deg,
+      var(--pink5, #ffd6e7),
+      var(--pink4, #ffb3cc),
+      var(--pink6, #ffe0ec),
+      var(--pink8, #fff0f5));
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.28);
+  scrollbar-width: none;
+  /* Enter animation start state */
+  opacity: 0;
+  transform: translateY(32px) scale(0.94);
+  transition:
+    opacity 0.28s ease,
+    transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.pm-modal--in {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.pm-modal::-webkit-scrollbar {
+  display: none;
+}
+
+/* ========================= */
+/* MODAL BODY                */
+/* ========================= */
+
+.pm-body {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  min-height: 600px;
+}
+
+/* ========================= */
+/* MODAL IMAGE SIDE          */
+/* ========================= */
+
+.pm-image-side {
+  position: relative;
+  padding: 28px;
+  background: linear-gradient(135deg, var(--pink5, #ffd6e7), var(--pink4, #ffb3cc));
+  border-radius: 40px 0 0 40px;
+}
+
+.pm-img {
+  width: 100%;
+  height: 100%;
+  max-height: 560px;
+  object-fit: cover;
+  border-radius: 24px;
+  background: white;
+  padding: 12px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+}
+
+/* ========================= */
+/* MODAL CONTENT SIDE        */
+/* ========================= */
+
+.pm-content-side {
+  padding: 50px 42px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow-y: auto;
+  scrollbar-width: none;
+  overscroll-behavior: contain;
+}
+
+.pm-content-side::-webkit-scrollbar {
+  display: none;
+}
+
+.pm-title {
+  font-size: 48px;
+  line-height: 1.05;
+  font-weight: 800;
+  color: #111;
+  margin-bottom: 24px;
+}
+
+.pm-description {
+  font-size: 17px;
+  line-height: 1.9;
+  color: rgba(0, 0, 0, 0.72);
+  margin-bottom: 30px;
+}
+
+/* ========================= */
+/* MODAL TAGS                */
+/* ========================= */
+
+.pm-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 36px;
+}
+
+.pm-tags span {
+  padding: 10px 20px;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  color: #111;
+  font-size: 14px;
+  font-weight: 700;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
+}
+
+/* ========================= */
+/* GITHUB BUTTON             */
+/* ========================= */
+
+.github-btn {
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 30px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #ff4f8b, #ff7ca8);
+  color: #111;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 700;
+  box-shadow: 0 12px 30px rgba(255, 79, 139, 0.35);
+  transition: transform 0.3s ease;
+}
+
+.github-btn:hover {
+  transform: translateY(-4px);
+}
+
+/* ========================= */
+/* CLOSE BUTTON              */
+/* ========================= */
+
+.pm-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff4f8b, #ff7ca8);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  z-index: 10;
+  cursor: pointer;
+  box-shadow: 0 12px 28px rgba(255, 79, 139, 0.35);
+  transition: transform 0.3s ease;
+}
+
+.pm-close:hover {
+  transform: rotate(90deg) scale(1.1);
+}
+
+/* ========================= */
+/* RESPONSIVE — TABLET       */
+/* ========================= */
+
+@media (max-width: 992px) {
+  .project-content h3 {
+    font-size: 34px;
+  }
+
+  .project-img {
+    height: 240px;
+  }
+
+  .pm-modal {
+    max-width: 95%;
+  }
+
+  .pm-body {
+    grid-template-columns: 1fr;
+    min-height: unset;
+  }
+
+  .pm-image-side {
+    padding: 22px 22px 0;
+    border-radius: 40px 40px 0 0;
+  }
+
+  .pm-content-side {
+    padding: 32px 28px 40px;
+  }
+
+  .pm-img {
+    max-height: 380px;
+  }
+
+  .pm-title {
+    font-size: 38px;
+  }
+}
+
+/* ========================= */
+/* RESPONSIVE — MOBILE       */
+/* ========================= */
+
+@media (max-width: 576px) {
+  .projects-section {
+    padding: 100px 0;
+  }
+
+  .project-card {
+    border-radius: 28px;
+  }
+
+  .project-img {
+    height: 220px;
+  }
+
+  .project-content {
+    padding: 22px;
+  }
+
+  .project-content h3 {
+    font-size: 26px;
+  }
+
+  .project-content p {
+    font-size: 15px;
+  }
+
+  .project-view-btn {
+    padding: 10px 16px;
+    border-radius: 14px;
+    font-size: 13px;
+  }
+
+  .pm-overlay {
+    padding: 12px;
+    align-items: flex-start;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .pm-modal {
+    max-height: 90vh;
+    border-radius: 28px;
+    overflow-y: auto;
+    max-height: 88vh;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .pm-body {
+    display: flex;
+    flex-direction: column;
+    min-height: max-content;
+  }
+
+  .pm-image-side {
+    padding: 16px 16px 0;
+    border-radius: 28px 28px 0 0;
+  }
+
+  .pm-content-side {
+    padding: 24px 20px 30px;
+    overflow-y: visible;
+  }
+
+  .pm-img {
+    max-height: 220px;
+    border-radius: 18px;
+    padding: 8px;
+  }
+
+  .pm-title {
+    font-size: 28px;
+    line-height: 1.15;
+    margin-bottom: 14px;
+  }
+
+  .pm-description {
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 22px;
+  }
+
+  .pm-tags {
+    gap: 8px;
+    margin-bottom: 22px;
+  }
+
+  .pm-tags span {
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+
+  .github-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 13px 18px;
+    border-radius: 14px;
+    font-size: 14px;
+  }
+
+  .pm-close {
+    width: 42px;
+    height: 42px;
+    top: 12px;
+    right: 12px;
+    font-size: 17px;
+  }
+}
+
+body.modal-open {
+  touch-action: none;
 }
