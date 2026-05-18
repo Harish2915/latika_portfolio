@@ -50,7 +50,7 @@ function Hero() {
               target="_blank" 
               rel="noopener noreferrer"
               download
-              className="hero-btn col-md-5 col-lg-5 col-sm-12">
+              className="hero-outline-btn col-md-5 col-lg-5 col-sm-12">
                 Download Resume
               </a>
 

@@ -61,7 +61,7 @@ body {
       var(--pink3),
       var(--pink5)
     );
-  background-attachment: fixed;
+  /* background-attachment: fixed; */
 
   /* Suppress horizontal bounce; vertical pull-to-refresh stays intact */
   overscroll-behavior-x: none;
