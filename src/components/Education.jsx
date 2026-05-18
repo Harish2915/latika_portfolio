@@ -85,69 +85,69 @@ function Education() {
 
                         <div className="timeline-card education-card glass">
 
-    {/* HSC */}
+                            {/* HSC */}
 
-    <div className="education-box">
+                            <div className="education-box">
 
-        <div className="education-top">
+                                <div className="education-top">
 
-            <span className="timeline-badge">
-                2021 - 2022
-            </span>
+                                    <span className="timeline-badge">
+                                        2021 - 2022
+                                    </span>
 
-        </div>
+                                </div>
 
-        <h3>
-            HSC
-        </h3>
+                                <h3>
+                                    HSC
+                                </h3>
 
-        <h4>
-            Vijayalakshmi Matriculation
-            Higher Secondary School
-        </h4>
+                                <h4>
+                                    Vijayalakshmi Matriculation
+                                    Higher Secondary School
+                                </h4>
 
-        <p>
-            Erode, Tamil Nadu
-            <br />
-            Percentage : 81.66%
-        </p>
+                                <p>
+                                    Sirumugai, Mettupalayam
+                                    <br />
+                                    Percentage : 81.66%
+                                </p>
 
-    </div>
+                            </div>
 
-    {/* DIVIDER */}
+                            {/* DIVIDER */}
 
-    <div className="education-divider"></div>
+                            <div className="education-divider"></div>
 
-    {/* SSLC */}
+                            {/* SSLC */}
 
-    <div className="education-box">
+                            <div className="education-box">
 
-        <div className="education-top">
+                                <div className="education-top">
 
-            <span className="timeline-badge">
-                2019 - 2020
-            </span>
+                                    <span className="timeline-badge">
+                                        2019 - 2020
+                                    </span>
 
-        </div>
+                                </div>
 
-        <h3>
-            SSLC
-        </h3>
+                                <h3>
+                                    SSLC
+                                </h3>
 
-        <h4>
-            Vijayalakshmi Matriculation
-            Higher Secondary School
-        </h4>
+                                <h4>
+                                    Vijayalakshmi Matriculation
+                                    Higher Secondary School
+                                </h4>
 
-        <p>
-            Erode, Tamil Nadu
-            <br />
-            Percentage : 72.2%
-        </p>
+                                <p>
+                                    Sirumugai, Mettupalayam
+                                    <br />
+                                    Percentage : 72.2%
+                                </p>
 
-    </div>
+                            </div>
 
-</div>
+                        </div>
 
                     </div>
 

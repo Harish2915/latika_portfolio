@@ -21,7 +21,7 @@ function Hero() {
 
           <div className="col-lg-6" data-aos="fade-right">
 
-            <h1 className="hero-title">
+            <h1 className="hero-title mt-5">
               Hi, I'm <span>Latika</span>
             </h1>
 
