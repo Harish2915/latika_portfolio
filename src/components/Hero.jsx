@@ -46,7 +46,7 @@ function Hero() {
                 Contact Me
                 <FaArrowRight />
               </a>
-              <a href="/public/resume/latika_resume.pdf"
+              <a href="/resume/latika_resume.pdf"
                 // target="_blank"
                 // rel="noopener noreferrer"
                 download
