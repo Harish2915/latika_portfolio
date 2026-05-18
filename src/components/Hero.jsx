@@ -9,6 +9,7 @@ import {
 } from "react-icons/fa";
 import { FaFlutter } from "react-icons/fa6";
 import profile from "../../public/profile1.jpg";
+import resumePDF from "../../public/latika_resume.pdf";
 import "../styles/Hero.css";
 
 function Hero() {
@@ -47,7 +48,7 @@ function Hero() {
                 <FaArrowRight />
               </a>
               <a
-                href="/latika_resume.pdf"
+                href={resumePDF}
                 download="latika_resume.pdf"
                 className="hero-outline-btn col-md-5 col-lg-5 col-sm-12"
               >
