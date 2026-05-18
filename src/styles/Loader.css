@@ -17,10 +17,6 @@
     #ff87ab
   );
   z-index: 99999;
-  
-  /* Critical: Ensure smooth unmount without white flash
-     Keep loader visible until React completes transition */
-  will-change: auto;
 }
 
 /* GLOW */

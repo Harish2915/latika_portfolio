@@ -130,11 +130,8 @@
   position: absolute;
   width: 70px;
   height: 70px;
-  /* Updated: Transparent background with backdrop-filter */
-  background: transparent;
+  background: rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 20px;
   display: flex;
   align-items: center;

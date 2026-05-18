@@ -34,10 +34,10 @@
 /* ========================= */
 
 section {
-  /* Sections inherit the body gradient naturally through background.
-     Do NOT add paint containment (restricts rendering).
-     Do NOT add opaque backgrounds (blocks gradient exposure).
-  */
+  /* Sections should NOT have paint containment on mobile.
+     It can prevent the background gradient from rendering through
+     in certain browsers' rendering pipelines.
+     Each section inherits the body gradient naturally. */
   
   position: relative;
   z-index: auto;
@@ -48,6 +48,11 @@ section {
 .projects-section,
 .about-section,
 .contact-section {
+  position: relative;
+  z-index: auto;
+}
+
+footer {
   position: relative;
   z-index: auto;
 }
@@ -137,19 +142,9 @@ section {
 }
 
 .glass {
-  /* Updated: Use transparent background with backdrop-filter for frosted effect.
-     This prevents white flash during fast mobile scrolling while preserving
-     the glassmorphic aesthetic.
-     
-     Old: background: rgba(255, 255, 255, 0.2);
-     Issue: Semi-transparent white shows white during overscroll
-     New: background: transparent; with backdrop-filter
-     Effect: Same frosted glass look, gradient shows through, no white flash */
-  
-  background: transparent;
+  background: rgba(255, 255, 255, 0.2);
   border-radius: 30px;
   backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
@@ -163,39 +158,23 @@ section {
     font-size: 38px;
   }
   
-  /* ─── MOBILE SCROLL PERFORMANCE OPTIMIZATION ─────────────────────
-     On mobile devices, certain CSS properties can cause rendering stalls
-     during fast scrolling. These rules optimize GPU acceleration
-     while maintaining visual stability.
-  ──────────────────────────────────────────────────────────────────── */
-  
-  /* Ensure body background is always visible (no culling on mobile) */
+  /* Mobile scroll optimizations to prevent white flash during momentum scroll.
+     On mobile devices, use backface-visibility to ensure layers stay visible
+     during compositor operations. */
   body {
-    /* Webkit mobile browsers: prevent layer collapse */
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-    
-    /* Ensure anti-aliasing is preserved during scroll */
     backface-visibility: hidden;
+    /* -webkit prefix for older Android and iOS devices */
     -webkit-backface-visibility: hidden;
   }
   
   #root {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
   }
   
-  /* Sections: prevent layer starvation during momentum scroll */
+  /* Ensure sections maintain visibility during accelerated scrolling */
   section {
-    backface-visibility: visible;
-    -webkit-backface-visibility: visible;
-  }
-  
-  /* Prevent footer from causing white flash */
-  footer {
-    backface-visibility: visible;
-    -webkit-backface-visibility: visible;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
   }
 }
