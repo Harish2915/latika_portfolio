@@ -293,7 +293,12 @@ body.modal-open {
 .pm-image-side {
   position: relative;
   padding: 28px;
-  background: linear-gradient(135deg, var(--pink5, #ffd6e7), var(--pink4, #ffb3cc));
+  background: linear-gradient(135deg,
+      var(--pink5, #ffd6e7),
+      /* var(--pink4, #ffb3cc), */
+      /* var(--pink6, #ffe0ec),
+      var(--pink8, #fff0f5) */
+      );
   border-radius: 40px 0 0 40px;
 }
 
@@ -381,6 +386,13 @@ body.modal-open {
   font-weight: 700;
   box-shadow: 0 12px 30px rgba(255, 79, 139, 0.35);
   transition: transform 0.3s ease;
+
+  margin-left: auto; /* move to right */
+  margin-top: auto; /* move to bottom */
+}
+
+.project-card-buttons {
+  display: flex;
 }
 
 .github-btn:hover {

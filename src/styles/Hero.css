@@ -50,6 +50,7 @@
 
 .hero-btn {
   background: var(--pink5);
+  justify-content: center;
   color: white;
   display: inline-flex;
   align-items: center;
@@ -64,6 +65,10 @@
 .hero-outline-btn {
   border: 2px solid var(--pink5);
   color: var(--pink5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .hero-outline-btn:hover {
@@ -179,6 +184,7 @@
 /* ========================= */
 
 @keyframes floatCard {
+
   0%,
   100% {
     transform: translateY(0px);
@@ -190,6 +196,7 @@
 }
 
 @keyframes floatIcon {
+
   0%,
   100% {
     transform: translateY(0px);
@@ -326,4 +333,26 @@
     height: 55px;
     font-size: 24px;
   }
+}
+
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 22px;
+  margin-top: 35px;
+}
+
+/* Top buttons */
+.hero-btn {
+  width: 260px;
+  text-align: center;
+}
+
+/* Download button centered below */
+.download-btn {
+  justify-content: center;
+  width: 260px;
+  margin: 0 auto;
+  display: block;
 }

@@ -37,13 +37,21 @@ function Hero() {
 
             <div className="hero-buttons">
 
-              <a href="#projects" className="hero-btn col-md-5 col-lg-5">
+              <a href="#projects" className="hero-btn col-md-5 col-lg-5 col-sm-12">
                 View Projects
                 <FaArrowRight />
               </a>
 
-              <a href="#contact" className="hero-outline-btn col-md-5 col-lg-5">
+              <a href="#contact" className="hero-btn col-md-5 col-lg-5 col-sm-12">
                 Contact Me
+                <FaArrowRight />
+              </a>
+              <a href="../../public/Resume/Latika_Resume.pdf" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              download
+              className="hero-outline-btn col-md-5 col-lg-5 col-sm-12">
+                Download Resume
               </a>
 
             </div>
