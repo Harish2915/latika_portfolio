@@ -1,3 +1,5 @@
+// src/components/SmoothScroll.jsx
+
 import { useEffect } from "react";
 import Lenis from "lenis";
 
@@ -6,18 +8,22 @@ function SmoothScroll() {
   useEffect(() => {
 
     const lenis = new Lenis({
-      duration: 2,
+      duration: 1.8,
       lerp: 0.08,
 
       smoothWheel: true,
+      smoothTouch: true,
       syncTouch: true,
-      syncTouchLerp: 0.08,
 
-      wheelMultiplier: 0.7,
-      touchMultiplier: 0.7,
-
-      infinite: false,
+      wheelMultiplier: 0.8,
+      touchMultiplier: 0.8,
     });
+
+    /* GLOBAL ACCESS */
+
+    window.lenis = lenis;
+
+    /* RAF LOOP */
 
     function raf(time) {
 
