@@ -47,7 +47,7 @@ function Hero() {
                 <FaArrowRight />
               </a>
               <a
-                href="/resume/latika_resume.pdf"
+                href="../../public/latika_resume.pdf"
                 download="latika_resume.pdf"
                 className="hero-outline-btn col-md-5 col-lg-5 col-sm-12"
               >
