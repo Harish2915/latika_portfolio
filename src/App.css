@@ -178,3 +178,69 @@ section {
     -webkit-backface-visibility: hidden;
   }
 }
+
+/* Mobile-only: compositor-safe overrides for touch devices
+   Targets devices that cannot hover and have coarse pointers (touch).
+   These overrides are deliberately scoped to mobile to preserve desktop visuals. */
+@media (hover: none) and (pointer: coarse) {
+  /* Reinforce safe fallback color for any exposed overscroll regions */
+  html {
+    background-color: #dca9b8;
+  }
+
+  body {
+    /* Ensure the body gradient covers extreme overscroll on mobile */
+    min-height: 180vh;
+    -webkit-overflow-scrolling: touch;
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  /* Promote root and large sections to their own compositing layers to
+     avoid transient gaps while the compositor repaints. Keep lightweight. */
+  #root,
+  .hero,
+  section,
+  footer {
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+    will-change: transform, opacity;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  /* Mobile-only visual-preserving overrides: convert semi-opaque white
+     backgrounds into transparent bases with backdrop-filter so the
+     gradient always shows through during overscroll. Use !important
+     only in this narrow mobile scope to avoid affecting desktop. */
+  .glass,
+  .glass-card,
+  .info-card,
+  .project-card,
+  .skill-group-card,
+  .custom-nav,
+  footer,
+  .floating-icon,
+  .hero-card {
+    background: transparent !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    backdrop-filter: blur(10px) !important;
+    border-color: rgba(255,255,255,0.16) !important;
+  }
+
+  /* Project images: avoid stark white tiles if exposed during overscroll */
+  .project-img {
+    background: #fadde1 !important;
+  }
+
+  /* Slightly reduce blur intensity during fast scroll to lower repaint cost */
+  .glass:hover,
+  .glass-card:hover,
+  .project-card:hover,
+  .skill-group-card:hover {
+    -webkit-backdrop-filter: blur(12px) !important;
+    backdrop-filter: blur(12px) !important;
+  }
+}
