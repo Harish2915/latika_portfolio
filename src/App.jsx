@@ -7,7 +7,6 @@ import "./App.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-import SmoothScroll from "./components/SmoothScroll";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -21,24 +20,22 @@ function App() {
 
   const [loading, setLoading] = useState(true);
 
-useEffect(() => {
+  useEffect(() => {
 
-  window.history.scrollRestoration = "manual";
+    AOS.init({
+      duration: 1000,
+      once: true,
+    });
 
-  window.scrollTo(0, 0);
+    /* LOADER TIMER */
 
-  AOS.init({
-    duration: 1000,
-    once: true,
-  });
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
 
-  const timer = setTimeout(() => {
-    setLoading(false);
-  }, 2000);
+    return () => clearTimeout(timer);
 
-  return () => clearTimeout(timer);
-
-}, []);
+  }, []);
 
   /* SHOW LOADER */
 
@@ -48,8 +45,6 @@ useEffect(() => {
 
   return (
     <>
-      <SmoothScroll />
-
       <Navbar />
 
       <Hero />
