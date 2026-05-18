@@ -2,9 +2,382 @@
 /* FOOTER */
 /* ========================= */
 
-footer {
-  padding: 30px;
-  text-align: center;
-  background: rgba(255,255,255,0.2);
+.footer {
+  position: relative;
+
+  overflow: hidden;
+
+  padding:
+    90px 25px 35px;
+
   backdrop-filter: blur(10px);
 }
+
+/* ========================= */
+/* TOP GLOW */
+/* ========================= */
+
+.footer-glow {
+  position: absolute;
+
+  top: -140px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: 650px;
+  height: 320px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,255,255,0.18),
+      transparent 70%
+    );
+
+  pointer-events: none;
+}
+
+/* ========================= */
+/* CONTAINER */
+/* ========================= */
+
+.footer-container {
+  position: relative;
+
+  z-index: 2;
+
+  max-width: 1250px;
+
+  margin: auto;
+}
+
+/* ========================= */
+/* CENTER */
+/* ========================= */
+
+.footer-center {
+  text-align: center;
+
+  margin-bottom: 70px;
+}
+
+/* ========================= */
+/* LOGO */
+/* ========================= */
+
+.footer-logo {
+  position: relative;
+
+  display: inline-block;
+
+  font-size: 62px;
+
+  font-weight: 800;
+
+  margin-bottom: 25px;
+
+  letter-spacing: 1px;
+}
+
+.footer-logo::after {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  bottom: -12px;
+
+  width: 130px;
+  height: 5px;
+
+  border-radius: 30px;
+
+  transform: translateX(-50%);
+
+  background: currentColor;
+}
+
+/* ========================= */
+/* DESCRIPTION */
+/* ========================= */
+
+.footer-desc {
+  max-width: 760px;
+
+  margin:
+    auto auto 45px;
+
+  font-size: 21px;
+
+  line-height: 1.9;
+
+  opacity: 0.82;
+}
+
+/* ========================= */
+/* SOCIALS */
+/* ========================= */
+
+.footer-socials {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 22px;
+}
+
+.footer-socials a {
+  width: 72px;
+  height: 72px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 22px;
+
+  font-size: 28px;
+
+  text-decoration: none;
+
+  position: relative;
+
+  overflow: hidden;
+
+  transition:
+    all 0.35s ease;
+
+  backdrop-filter: blur(10px);
+
+  border:
+    1px solid rgba(255,255,255,0.15);
+}
+
+/* HOVER */
+
+.footer-socials a:hover {
+  transform:
+    translateY(-10px)
+    scale(1.08)
+    rotate(5deg);
+
+  box-shadow:
+    0 15px 35px rgba(0,0,0,0.18);
+}
+
+/* ========================= */
+/* BOTTOM */
+/* ========================= */
+
+.footer-bottom {
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding-top: 35px;
+}
+
+/* LINE */
+
+.footer-bottom::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,0.45),
+      transparent
+    );
+}
+
+.footer-bottom p {
+  opacity: 0.72;
+
+  font-size: 17px;
+}
+
+/* ========================= */
+/* BUTTON */
+/* ========================= */
+
+.back-top {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  padding:
+    16px 28px;
+
+  border-radius: 18px;
+
+  border:
+    1px solid rgba(255,255,255,0.18);
+  
+      background:
+    linear-gradient(
+      135deg,
+      #ff4f8b,
+      #ff7ca8
+    );
+
+  color: white;
+
+  backdrop-filter: blur(10px);
+
+  cursor: pointer;
+
+  transition:
+    all 0.35s ease;
+}
+
+/* HOVER */
+
+.back-top:hover {
+  transform:
+    translateY(-6px);
+
+  box-shadow:
+    0 12px 30px rgba(0,0,0,0.15);
+}
+
+/* ========================= */
+/* RESPONSIVE */
+/* ========================= */
+
+@media (max-width: 768px) {
+
+  .footer {
+    padding:
+      70px 20px 30px;
+  }
+
+  .footer-center {
+    margin-bottom: 50px;
+  }
+
+  .footer-logo {
+    font-size: 42px;
+  }
+
+  .footer-desc {
+    font-size: 17px;
+
+    line-height: 1.8;
+  }
+
+  .footer-socials a {
+    width: 58px;
+    height: 58px;
+
+    font-size: 22px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+
+    text-align: center;
+  }
+
+  .back-top {
+    width: 100%;
+
+    justify-content: center;
+  }
+
+}
+
+.footer-socials a {
+
+  position: relative;
+
+  width: 68px;
+  height: 68px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 22px;
+
+  font-size: 28px;
+
+  text-decoration: none;
+
+  overflow: hidden;
+
+  transition:
+    all 0.35s ease;
+
+  background:
+    rgba(255,255,255,0.08);
+
+  border:
+    1px solid rgba(255,255,255,0.12);
+
+  backdrop-filter: blur(10px);
+
+  /* REMOVE BLUE */
+
+  color: inherit;
+}
+
+/* ICON COLOR */
+
+.footer-socials a svg {
+
+  color: white;
+
+  transition:
+    all 0.35s ease;
+}
+
+/* HOVER */
+/* 
+.footer-socials a:hover {
+
+  transform:
+    translateY(-10px)
+    scale(1.08);
+
+  background:
+    rgba(255,255,255,0.18);
+
+  box-shadow:
+    0 14px 30px rgba(0,0,0,0.12);
+} */
+
+/* ICON HOVER */
+
+.footer-socials a:hover svg {
+
+  /* transform:
+    scale(1.15); */
+
+  color:
+    rgba(255,255,255,0.95);
+}
+
