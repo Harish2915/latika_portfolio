@@ -46,13 +46,22 @@ function Hero() {
                 Contact Me
                 <FaArrowRight />
               </a>
-              <a href="../../public/resume/latika_resume.pdf" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              download
-              className="hero-outline-btn col-md-5 col-lg-5 col-sm-12">
+              <a href="/public/resume/latika_resume.pdf"
+                // target="_blank"
+                // rel="noopener noreferrer"
+                download
+                className="hero-outline-btn col-md-5 col-lg-5 col-sm-12">
                 Download Resume
               </a>
+              {/* <a
+                href="/Resume/Harish_Resume.pdf"
+                download
+                variant="outline"
+                // icon={HiDownload}
+                className="w-full sm:w-auto sm:min-w-[160px]"
+              >
+                Download Resume
+              </a> */}
 
             </div>
 
@@ -101,7 +110,7 @@ function Hero() {
             {/* <div className="floating-icon icon1">
               <FaCode />
             </div> */}
-            
+
             <div className="floating-icon icon1">
               <FaReact />
             </div>
