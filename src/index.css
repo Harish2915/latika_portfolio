@@ -8,9 +8,20 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  
+  /* ─── ANTI-WHITE-FLASH BASELINE ────────────────────────────────
+     This is the absolute fallback that shows when NOTHING else can
+     be rendered. Must match the gradient's tone to hide overscroll areas.
+  ─────────────────────────────────────────────────────────────────── */
+  background-color: #e6779a;
 }
 
 body {
   font-family: "Poppins", sans-serif;
   overflow-x: hidden;
+  position: relative;
+  
+  /* Critical: Ensure body is NOT transparent */
+  background-attachment: scroll;
 }

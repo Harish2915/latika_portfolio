@@ -52,8 +52,10 @@
   padding: 28px;
   border-radius: 26px;
   overflow: hidden;
-  background: rgba(255,255,255,0.10);
+  /* Updated: Transparent background prevents white flash during fast mobile scroll */
+  background: transparent;
   backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(255,255,255,0.22);
   transition: 0.35s ease;
   box-shadow:
@@ -64,7 +66,10 @@
 
 .skill-group-card:hover {
   transform: translateY(-6px);
-  background: rgba(255,255,255,0.14);
+  /* Keep background transparent, only adjust backdrop effect */
+  background: transparent;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
   border-color: rgba(255,255,255,0.32);
   box-shadow:
     0 14px 28px rgba(255, 93, 143, 0.14);
@@ -87,7 +92,10 @@
   width: 54px;
   height: 54px;
   border-radius: 16px;
-  background: rgba(255,255,255,0.10);
+  /* Updated: Transparent background with backdrop-filter */
+  background: transparent;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255,255,255,0.18);
   display: flex;
   align-items: center;

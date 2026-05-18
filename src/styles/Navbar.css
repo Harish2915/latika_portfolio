@@ -3,8 +3,10 @@
 /* ========================= */
 
 .custom-nav {
-  background: rgba(255,255,255,0.18);
+  /* Updated: Transparent background prevents white appearance during scroll */
+  background: transparent;
   backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   padding: 18px 0;
   transition: 0.4s;
   border-bottom: 1px solid rgba(255,255,255,0.15);
@@ -76,13 +78,17 @@
   width: 55px;
   height: 55px;
   border-radius: 18px;
-  background: rgba(255,255,255,0.25);
+  /* Updated: Transparent background with backdrop-filter */
+  background: transparent;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 6px;
   transition: 0.4s;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow:
     0 10px 25px rgba(255,93,143,0.15);
 }

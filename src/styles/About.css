@@ -30,12 +30,17 @@
 /* ========================= */
 
 .glass-card {
-  background: rgba(255,255,255,0.18);
+  /* Updated for mobile scroll stability:
+     Removed semi-transparent white background that causes white flash.
+     Kept backdrop-filter for frosted glass aesthetic.
+  */
+  background: transparent;
   backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-radius: 24px;
   padding: 24px;
   width: 100%;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.18);
   box-shadow:
     0 8px 24px rgba(255, 93, 143, 0.08);
 }
@@ -65,8 +70,11 @@
   gap: 14px;
   padding: 16px 18px;
   border-radius: 16px;
-  background: rgba(255,255,255,0.22);
-  border: none;
+  /* Updated: Transparent background with backdrop-filter instead of semi-white */
+  background: transparent;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   transition: 0.35s ease;
   box-shadow:
     0 4px 12px rgba(255, 93, 143, 0.04);
@@ -74,7 +82,11 @@
 
 .info-card:hover {
   transform: translateY(-4px);
-  background: rgba(255,255,255,0.34);
+  /* On hover, increase backdrop blur but keep background transparent */
+  background: transparent;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-color: rgba(255, 255, 255, 0.28);
 }
 
 /* ICON */

@@ -19,13 +19,37 @@
 
 #root {
   min-height: 100vh;
-
   background: inherit;
 
-  /* Promote #root to its own compositor layer.
-     Prevents the browser from flashing the OS/document background
-     during fast scrolling or rubber-band overscroll. */
+  /* Create isolated rendering context to separate #root stacking
+     from global scrolling layer. This improves compositor efficiency. */
   isolation: isolate;
+  
+  position: relative;
+  z-index: 0;
+}
+
+/* ========================= */
+/* SECTION BASE STYLING      */
+/* ========================= */
+
+section {
+  /* Sections inherit the body gradient naturally through background.
+     Do NOT add paint containment (restricts rendering).
+     Do NOT add opaque backgrounds (blocks gradient exposure).
+  */
+  
+  position: relative;
+  z-index: auto;
+}
+
+/* Apply baseline styling to major sections */
+.hero,
+.projects-section,
+.about-section,
+.contact-section {
+  position: relative;
+  z-index: auto;
 }
 
 /* ========================= */
@@ -39,38 +63,55 @@
   font-family: "Playwrite GB S", cursive;
 }
 
-html,
-body {
-  overflow-x: hidden;
-
-  /* ─── OVERSCROLL WHITE FLASH FIX ───────────────────────────────────
-     When the browser rubber-bands (iOS) or paints past the document
-     edge (Chrome/Firefox), it fills the viewport with the background
-     of <html>. Matching it to the gradient's dominant mid-tone means
-     any exposed edge looks like part of the page, never stark white.
-
-     background-attachment: fixed pins the gradient to the viewport so
-     it never "runs out" during fast scroll — the same gradient tile is
-     always visible no matter how far the user overshoots.
-  ──────────────────────────────────────────────────────────────────── */
-  background-color: var(--pink3);
-  background-image:
-    linear-gradient(
-      135deg,
-      var(--pink1),
-      var(--pink3),
-      var(--pink5)
-    );
-  /* background-attachment: fixed; */
-
-  /* Suppress horizontal bounce; vertical pull-to-refresh stays intact */
-  overscroll-behavior-x: none;
-}
-
 html {
+  /* Solid fallback color - CRITICAL for mobile overscroll zones
+     When rubber-banding (iOS) or momentum scroll overshot (Chrome Android),
+     the browser exposes pixels beyond the document boundary.
+     This must match or complement the gradient's darkest tone. */
+  background-color: #e6779a;
+  
   scroll-behavior: smooth;
   scrollbar-gutter: stable;
   min-height: 100%;
+  
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+
+  /* ─── ABSOLUTE ANTI-WHITE-FLASH FIX ───────────────────────────────
+     The gradient must be applied as a base layer that:
+     1. Starts from the very top of the viewport (can't have gaps)
+     2. Extends beyond normal document height for overscroll zones
+     3. Does not use background-attachment:fixed (causes repaints)
+     4. Does not rely on paint containment (can break rendering)
+     
+     Solution: Apply gradient directly to body with extended min-height.
+     Desktop browsers show scrollbar; mobile browsers use it as safe area.
+     The gradient tiles beyond the document edge naturally.
+  ──────────────────────────────────────────────────────────────────── */
+  
+  background-color: #e6779a;
+  background-image:
+    linear-gradient(
+      135deg,
+      #fadde1 0%,
+      #ffc4d6 25%,
+      #dca9b8 50%,
+      #e6779a 75%,
+      #ff87ab 100%
+    );
+  
+  /* Extended height to cover ALL overscroll scenarios:
+     - iOS rubber-band: up to 150% of viewport
+     - Chrome momentum scroll: can exceed 120%
+     - Samsung Internet: similar to Chrome
+     Using a larger value ensures coverage without visual issues */
+  min-height: 150vh;
+  
+  /* Suppress horizontal bounce/pull */
+  overscroll-behavior-x: none;
 }
 
 /*
@@ -78,20 +119,6 @@ html {
   Handled entirely by Projects.css via position:fixed + top:var(--modal-scroll-y).
   Any overflow:hidden / height:100vh here will conflict and break scroll restoration.
 */
-
-/* ========================= */
-/* GLOBAL BODY STYLES        */
-/* ========================= */
-
-body {
-  min-height: 100vh;
-  font-family: "Playwrite GB S", cursive;
-
-  /* background-color / background-image are declared on html,body above.
-     background-attachment:fixed on a scrolling element can cause repaints
-     on some browsers; the declaration on <html> alone is sufficient to
-     cover overscroll zones, so we don't repeat it here. */
-}
 
 /* ========================= */
 /* REUSABLE UTILITIES        */
@@ -110,9 +137,19 @@ section {
 }
 
 .glass {
-  background: rgba(255, 255, 255, 0.2);
+  /* Updated: Use transparent background with backdrop-filter for frosted effect.
+     This prevents white flash during fast mobile scrolling while preserving
+     the glassmorphic aesthetic.
+     
+     Old: background: rgba(255, 255, 255, 0.2);
+     Issue: Semi-transparent white shows white during overscroll
+     New: background: transparent; with backdrop-filter
+     Effect: Same frosted glass look, gradient shows through, no white flash */
+  
+  background: transparent;
   border-radius: 30px;
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
@@ -124,5 +161,41 @@ section {
 @media (max-width: 768px) {
   .title {
     font-size: 38px;
+  }
+  
+  /* ─── MOBILE SCROLL PERFORMANCE OPTIMIZATION ─────────────────────
+     On mobile devices, certain CSS properties can cause rendering stalls
+     during fast scrolling. These rules optimize GPU acceleration
+     while maintaining visual stability.
+  ──────────────────────────────────────────────────────────────────── */
+  
+  /* Ensure body background is always visible (no culling on mobile) */
+  body {
+    /* Webkit mobile browsers: prevent layer collapse */
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    
+    /* Ensure anti-aliasing is preserved during scroll */
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+  
+  #root {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+  
+  /* Sections: prevent layer starvation during momentum scroll */
+  section {
+    backface-visibility: visible;
+    -webkit-backface-visibility: visible;
+  }
+  
+  /* Prevent footer from causing white flash */
+  footer {
+    backface-visibility: visible;
+    -webkit-backface-visibility: visible;
   }
 }
