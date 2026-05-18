@@ -9,26 +9,9 @@ import {
 } from "react-icons/fa";
 import { FaFlutter } from "react-icons/fa6";
 import profile from "../../public/profile1.jpg";
-import resumePDF from "../assets/latika_resume.pdf";
 import "../styles/Hero.css";
 
 function Hero() {
-  const handleDownload = () => {
-    fetch(resumePDF)
-      .then(response => response.blob())
-      .then(blob => {
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'latika_resume.pdf';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        window.URL.revokeObjectURL(url);
-      })
-      .catch(error => console.error('Error downloading resume:', error));
-  };
-
   return (
     <section className="hero" id="home">
       <div className="container">
@@ -63,12 +46,13 @@ function Hero() {
                 Contact Me
                 <FaArrowRight />
               </a>
-              <button
-                onClick={handleDownload}
+              <a
+                href="/Resume/Latika_Resume.pdf"
+                download="Latika_Resume.pdf"
                 className="hero-outline-btn col-md-5 col-lg-5 col-sm-12"
               >
                 Download Resume
-              </button>
+              </a>
               {/* <a
                 href="/Resume/Harish_Resume.pdf"
                 download

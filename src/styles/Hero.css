@@ -356,3 +356,33 @@
   margin: 0 auto;
   display: block;
 }
+
+/* ========================= */
+/* LARGE SCREEN BUTTON FIX */
+/* ========================= */
+
+@media (min-width: 992px) {
+
+  .hero-buttons {
+    width: 560px;
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 20px;
+  }
+
+  .hero-btn {
+    width: 270px;
+
+    justify-content: center;
+  }
+
+  .download-btn {
+    width: 270px;
+
+    margin: 0 auto;
+  }
+
+}
