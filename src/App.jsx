@@ -7,7 +7,6 @@ import "./App.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-import SmoothScroll from "./components/SmoothScroll";
 import Navbar from "./components/Navbar";
 import Loader from "./components/Loader";
 import Hero from "./components/Hero";
@@ -48,7 +47,6 @@ function App() {
 
   return (
     <>
-      <SmoothScroll />
       <Navbar />
       <Hero />
       <About />

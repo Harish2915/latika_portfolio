@@ -7,7 +7,7 @@
 :root {
   --pink1: #fadde1;
   --pink2: #ffc4d6;
-  --pink3: #dca9b8;
+  --pink3: #ffa6c1;
   --pink4: #ff87ab;
   --pink5: #e6779a;
   --pink6: #ff97b7;
@@ -69,17 +69,20 @@ footer {
 }
 
 html {
-  /* Solid fallback color - CRITICAL for mobile overscroll zones
-     When rubber-banding (iOS) or momentum scroll overshot (Chrome Android),
-     the browser exposes pixels beyond the document boundary.
-     This must match or complement the gradient's darkest tone. */
-  background-color: #e6779a;
-  
-  /* scroll-behavior: smooth; */
+  scroll-behavior: smooth;
   scrollbar-gutter: stable;
+
+  background-color: var(--pink3);
+
+  background-image:
+    linear-gradient(
+      135deg,
+      var(--pink1),
+      var(--pink3),
+      var(--pink5)
+    );
+
   min-height: 100%;
-  
-  overflow-x: hidden;
 }
 
 body {
@@ -97,15 +100,14 @@ body {
      The gradient tiles beyond the document edge naturally.
   ──────────────────────────────────────────────────────────────────── */
   
-  background-color: #e6779a;
+  background-color: var(--pink3);
+
   background-image:
     linear-gradient(
       135deg,
-      #fadde1 0%,
-      #ffc4d6 25%,
-      #dca9b8 50%,
-      #e6779a 75%,
-      #ff87ab 100%
+      var(--pink1),
+      var(--pink3),
+      var(--pink5)
     );
   
   /* Extended height to cover ALL overscroll scenarios:
@@ -179,29 +181,53 @@ section {
   }
 }
 
-html,
-body {
-  overscroll-behavior: none;
-  touch-action: pan-y;
+/* ========================= */
+/* SKELETON FALLBACKS       */
+/* ========================= */
+
+.section-skeleton {
+  width: 100%;
+  display: grid;
+  gap: 24px;
+  padding: 80px 24px;
+  background: rgba(255, 255, 255, 0.05);
 }
 
-html.lenis,
-html.lenis body {
-  height: auto;
+.skeleton-title {
+  width: 45%;
+  height: 3rem;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.12);
 }
 
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
+.skeleton-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
 }
 
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
+.skeleton-card {
+  min-height: 220px;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.08);
 }
 
-.lenis.lenis-stopped {
-  overflow: hidden;
+.pm-modal--loading {
+  min-width: 320px;
+  max-width: 700px;
+  padding: 40px;
+  border-radius: 32px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.lenis.lenis-smooth iframe {
-  pointer-events: none;
+.pm-loader {
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: #111;
 }
