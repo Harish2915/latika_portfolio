@@ -7,7 +7,7 @@
 :root {
   --pink1: #fadde1;
   --pink2: #ffc4d6;
-  --pink3: #ffa6c1;
+  --pink3: #dca9b8;
   --pink4: #ff87ab;
   --pink5: #e6779a;
   --pink6: #ff97b7;
@@ -21,6 +21,11 @@
   min-height: 100vh;
 
   background: inherit;
+
+  /* Promote #root to its own compositor layer.
+     Prevents the browser from flashing the OS/document background
+     during fast scrolling or rubber-band overscroll. */
+  isolation: isolate;
 }
 
 /* ========================= */
@@ -37,14 +42,18 @@
 html,
 body {
   overflow-x: hidden;
-}
 
-html {
-  scroll-behavior: smooth;
-  scrollbar-gutter: stable;
+  /* ─── OVERSCROLL WHITE FLASH FIX ───────────────────────────────────
+     When the browser rubber-bands (iOS) or paints past the document
+     edge (Chrome/Firefox), it fills the viewport with the background
+     of <html>. Matching it to the gradient's dominant mid-tone means
+     any exposed edge looks like part of the page, never stark white.
 
+     background-attachment: fixed pins the gradient to the viewport so
+     it never "runs out" during fast scroll — the same gradient tile is
+     always visible no matter how far the user overshoots.
+  ──────────────────────────────────────────────────────────────────── */
   background-color: var(--pink3);
-
   background-image:
     linear-gradient(
       135deg,
@@ -52,7 +61,15 @@ html {
       var(--pink3),
       var(--pink5)
     );
+  background-attachment: fixed;
 
+  /* Suppress horizontal bounce; vertical pull-to-refresh stays intact */
+  overscroll-behavior-x: none;
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-gutter: stable;
   min-height: 100%;
 }
 
@@ -67,18 +84,13 @@ html {
 /* ========================= */
 
 body {
-  background-color: var(--pink3);
-
-  background-image:
-    linear-gradient(
-      135deg,
-      var(--pink1),
-      var(--pink3),
-      var(--pink5)
-    );
-
   min-height: 100vh;
   font-family: "Playwrite GB S", cursive;
+
+  /* background-color / background-image are declared on html,body above.
+     background-attachment:fixed on a scrolling element can cause repaints
+     on some browsers; the declaration on <html> alone is sufficient to
+     cover overscroll zones, so we don't repeat it here. */
 }
 
 /* ========================= */
