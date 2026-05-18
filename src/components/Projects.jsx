@@ -347,7 +347,7 @@ function Projects() {
 
   return (
     <section id="projects" className="projects-section">
-      <div className="container">
+      <div className="container mt-5">
         <h1 className="title" data-aos="fade-up">
           Projects
         </h1>

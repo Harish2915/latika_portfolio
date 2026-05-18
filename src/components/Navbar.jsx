@@ -213,6 +213,32 @@ function Navbar() {
 
                             <li className="nav-item">
                                 <a
+                                    className={`nav-link ${activeSection === "experience"
+                                        ? "active-link"
+                                        : ""
+                                        }`}
+                                    href="#experience"
+                                    onClick={closeMenu}
+                                >
+                                    Experience
+                                </a>
+                            </li>
+
+                            <li className="nav-item">
+                                <a
+                                    className={`nav-link ${activeSection === "education"
+                                        ? "active-link"
+                                        : ""
+                                        }`}
+                                    href="#education"
+                                    onClick={closeMenu}
+                                >
+                                    Education
+                                </a>
+                            </li>
+
+                            <li className="nav-item">
+                                <a
                                     className={`nav-link ${activeSection === "contact"
                                         ? "active-link"
                                         : ""

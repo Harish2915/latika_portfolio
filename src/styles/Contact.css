@@ -1,18 +1,601 @@
 /* ========================= */
-/* CONTACT */
+/* CONTACT SECTION */
 /* ========================= */
 
-.form-control {
-  border: none;
-  border-radius: 15px;
-  padding: 15px;
+#contact {
+  position: relative;
+  padding: 120px 0;
 }
 
+/* ========================= */
+/* CONTACT BOX */
+/* ========================= */
+
+#contact .glass {
+  max-width: 850px;
+
+  margin: auto;
+
+  padding: 40px !important;
+
+  border-radius: 35px;
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+/* ========================= */
+/* FORM */
+/* ========================= */
+
+#contact form {
+  position: relative;
+  z-index: 2;
+}
+
+/* ========================= */
+/* INPUTS */
+/* ========================= */
+
+#contact .form-control {
+  width: 100%;
+
+  padding: 18px 22px;
+
+  border-radius: 20px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.2);
+
+  background:
+    rgba(255, 255, 255, 0.08);
+
+  backdrop-filter: blur(12px);
+
+  color: var(--dark);
+
+  font-size: 16px;
+
+  outline: none;
+
+  transition: 0.3s ease;
+
+  box-shadow:
+    inset 0 1px 2px rgba(255, 255, 255, 0.15);
+}
+
+#contact .form-control:focus {
+  border-color: var(--pink5);
+
+  box-shadow:
+    0 0 0 4px rgba(255, 79, 139, 0.12);
+}
+
+#contact .form-control::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+/* ========================= */
+/* TEXTAREA */
+/* ========================= */
+
+#contact textarea.form-control {
+  resize: none;
+  min-height: 180px;
+}
+
+/* ========================= */
+/* BUTTON */
+/* ========================= */
+
 .contact-btn {
-  background: var(--pink5);
-  color: white;
-  padding: 15px 35px;
+  width: 100%;
+
   border: none;
-  border-radius: 50px;
+
+  padding: 15px 32px;
+
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff4f8b,
+      #ff7ca8
+    );
+
+  color: white;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.35s ease;
+
+  box-shadow:
+    0 15px 35px rgba(255, 79, 139, 0.25);
+}
+
+.contact-btn:hover {
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 20px 40px rgba(255, 79, 139, 0.35);
+}
+
+/* ========================= */
+/* SPACING */
+/* ========================= */
+
+#contact .mb-4 {
+  margin-bottom: 22px !important;
+}
+
+/* ========================= */
+/* RESPONSIVE */
+/* ========================= */
+
+@media (max-width: 768px) {
+
+  #contact {
+    padding: 80px 16px;
+  }
+
+  #contact .glass {
+    width: 100%;
+
+    padding: 22px !important;
+
+    border-radius: 26px;
+  }
+
+  #contact .form-control {
+    padding: 15px 16px;
+
+    font-size: 15px;
+
+    border-radius: 18px;
+  }
+
+  #contact textarea.form-control {
+    min-height: 150px;
+  }
+
+  .contact-btn {
+    width: 100%;
+
+    padding: 15px;
+
+    border-radius: 16px;
+  }
+
+}
+
+@media (max-width: 480px) {
+
+  #contact {
+    padding: 70px 12px;
+  }
+
+  #contact .glass {
+    padding: 18px !important;
+
+    border-radius: 24px;
+  }
+
+  #contact .form-control {
+    font-size: 14px;
+
+    padding: 14px 15px;
+
+    border-radius: 16px;
+  }
+
+  #contact textarea.form-control {
+    min-height: 140px;
+  }
+
+  .contact-btn {
+    font-size: 14px;
+
+    padding: 14px;
+  }
+
+}
+
+.contact-status {
+  margin-top: 18px;
+
+  color: var(--pink5);
+
   font-weight: 600;
+
+  font-size: 15px;
+}
+
+/* ========================= */
+/* SEND BUTTON ANIMATION */
+/* ========================= */
+
+.contact-btn {
+  width: 100%;
+
+  border: none;
+
+  padding: 15px 32px;
+
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff4f8b,
+      #ff7ca8
+    );
+
+  color: white;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.35s ease;
+
+  box-shadow:
+    0 15px 35px rgba(255, 79, 139, 0.25);
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 12px;
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+.contact-btn:hover {
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 20px 40px rgba(255, 79, 139, 0.35);
+}
+
+/* SENDING STATE */
+
+.contact-btn.sending {
+  pointer-events: none;
+
+  opacity: 0.95;
+}
+
+/* SHIMMER EFFECT */
+
+.contact-btn.sending::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -120%;
+
+  width: 100%;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,0.35),
+      transparent
+    );
+
+  animation:
+    shimmer 1.2s infinite;
+}
+
+@keyframes shimmer {
+
+  100% {
+    left: 120%;
+  }
+
+}
+
+/* LOADER */
+
+.send-loader {
+  width: 18px;
+  height: 18px;
+
+  border:
+    2px solid rgba(255,255,255,0.4);
+
+  border-top:
+    2px solid white;
+
+  border-radius: 50%;
+
+  animation:
+    spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+
+  100% {
+    transform: rotate(360deg);
+  }
+
+}
+
+/* ========================= */
+/* DELIVERY SUCCESS ANIMATION */
+/* ========================= */
+
+.delivery-animation {
+  text-align: center;
+
+  padding: 30px 10px;
+}
+
+.delivery-animation h3 {
+  margin-top: 30px;
+
+  font-size: 28px;
+
+  color: var(--dark);
+}
+
+.delivery-animation p {
+  margin-top: 10px;
+
+  color: rgba(0,0,0,0.7);
+}
+
+/* SCENE */
+
+.delivery-scene {
+  position: relative;
+
+  width: 100%;
+
+  max-width: 360px;
+
+  height: 150px;
+
+  margin: auto;
+
+  overflow: hidden;
+}
+
+/* ========================= */
+/* BOY */
+/* ========================= */
+
+.boy {
+  position: absolute;
+
+  left: 40px;
+
+  bottom: 22px;
+
+  font-size: 42px;
+
+  z-index: 3;
+
+  /* BOY FACING TRUCK */
+
+  transform: scaleX(-1);
+
+  animation:
+    boyMove 2.5s ease forwards;
+}
+
+/* ========================= */
+/* BOX */
+/* ========================= */
+
+.box {
+  position: absolute;
+
+  left: 85px;
+
+  bottom: 32px;
+
+  font-size: 30px;
+
+  z-index: 2;
+
+  animation:
+    moveBox 2.5s ease forwards;
+}
+
+/* ========================= */
+/* TRUCK */
+/* ========================= */
+
+.truck {
+  position: absolute;
+
+  right: -140px;
+
+  bottom: 0;
+
+  font-size: 78px;
+
+  z-index: 1;
+
+  animation:
+    truckCome 1.5s ease forwards,
+    truckGo 2.2s ease forwards 3s;
+}
+
+/* ========================= */
+/* SMOKE */
+/* ========================= */
+
+.smoke {
+  position: absolute;
+
+  right: 60px;
+
+  bottom: 25px;
+
+  width: 14px;
+  height: 14px;
+
+  background: rgba(180,180,180,0.6);
+
+  border-radius: 50%;
+
+  filter: blur(2px);
+
+  opacity: 0;
+
+  animation:
+    smokeMove 1s ease infinite 3s;
+}
+
+.smoke::before,
+.smoke::after {
+  content: "";
+
+  position: absolute;
+
+  width: 12px;
+  height: 12px;
+
+  background: rgba(200,200,200,0.5);
+
+  border-radius: 50%;
+}
+
+.smoke::before {
+  left: -10px;
+  top: -5px;
+}
+
+.smoke::after {
+  left: 8px;
+  top: -8px;
+}
+
+/* ========================= */
+/* ANIMATIONS */
+/* ========================= */
+
+@keyframes boyMove {
+
+  0% {
+    left: 40px;
+  }
+
+  60% {
+    left: 110px;
+  }
+
+  100% {
+    left: 110px;
+    opacity: 0;
+  }
+
+}
+
+@keyframes moveBox {
+
+  0% {
+    left: 85px;
+  }
+
+  60% {
+    left: 175px;
+    bottom: 40px;
+  }
+
+  100% {
+    left: 190px;
+    bottom: 48px;
+    opacity: 0;
+  }
+
+}
+
+@keyframes truckCome {
+
+  0% {
+    right: -140px;
+  }
+
+  100% {
+    right: 20px;
+  }
+
+}
+
+@keyframes truckGo {
+
+  0% {
+    right: 20px;
+  }
+
+  100% {
+    right: 430px;
+  }
+
+}
+
+/* SMOKE EFFECT */
+
+@keyframes smokeMove {
+
+  0% {
+    transform:
+      translate(0, 0)
+      scale(0.5);
+
+    opacity: 0;
+  }
+
+  30% {
+    opacity: 0.8;
+  }
+
+  100% {
+    transform:
+      translate(-45px, -25px)
+      scale(1.8);
+
+    opacity: 0;
+  }
+
+}
+
+/* ========================= */
+/* MOBILE */
+/* ========================= */
+
+@media (max-width: 480px) {
+
+  .delivery-animation h3 {
+    font-size: 22px;
+  }
+
+  .truck {
+    font-size: 65px;
+  }
+
+  .boy {
+    font-size: 36px;
+  }
+
+  .box {
+    font-size: 26px;
+  }
+
 }

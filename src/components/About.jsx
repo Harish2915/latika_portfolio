@@ -11,7 +11,7 @@ import "../styles/About.css";
 function About() {
   return (
     <section id="about" className="py-5">
-      <div className="container">
+      <div className="container mt-5">
 
         {/* Heading */}
         <div className="text-center mb-5">
