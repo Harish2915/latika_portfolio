@@ -1,8 +1,7 @@
 // src/components/Projects.jsx
 
-import { useState, useEffect, useRef } from "react";
-import { createPortal } from "react-dom";
-import { FaGithub, FaTimes } from "react-icons/fa";
+import { useState, useEffect, useRef, lazy, Suspense } from "react";
+import { FaGithub } from "react-icons/fa";
 import "../styles/Projects.css";
 
 import taskImg   from "../../public/projects/task.png";
@@ -10,6 +9,18 @@ import amazonImg from "../../public/projects/amazon.png";
 import indeedImg from "../../public/projects/indeed.png";
 import notesImg  from "../../public/projects/notes.png";
 import loanImg   from "../../public/projects/loan.png";
+
+const ProjectModal = lazy(() => import("./ProjectModal"));
+
+function ModalFallback() {
+  return (
+    <div className="pm-overlay pm-overlay--in" aria-hidden="true">
+      <div className="pm-modal pm-modal--loading">
+        <div className="pm-loader">Loading project details…</div>
+      </div>
+    </div>
+  );
+}
 
 /* ─── Projects data ──────────────────────────────────────────────────────── */
 
@@ -147,129 +158,6 @@ function unlockScroll() {
   });
 }
 
-/* ─── Portal Modal ───────────────────────────────────────────────────────── */
-
-function ProjectModal({ project, onClose, triggerEl }) {
-  const overlayRef = useRef(null);
-  const modalRef   = useRef(null);
-  const [visible, setVisible] = useState(false);
-
-  // Animate in on next paint
-  useEffect(() => {
-    const id = requestAnimationFrame(() => setVisible(true));
-    return () => cancelAnimationFrame(id);
-  }, []);
-
-  // Close on Escape
-  useEffect(() => {
-    const onKey = (e) => { if (e.key === "Escape") handleClose(); };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, []);
-
-  // Move focus inside modal
-  useEffect(() => {
-    const first = modalRef.current?.querySelector(
-      'button:not([disabled]), [href], [tabindex]:not([tabindex="-1"])'
-    );
-    first?.focus();
-  }, []);
-
-  // Prevent touchmove bleed on iOS (overlay background)
-  useEffect(() => {
-    const overlay = overlayRef.current;
-    if (!overlay) return;
-    const prevent = (e) => {
-      if (e.target === overlay) e.preventDefault();
-    };
-    overlay.addEventListener("touchmove", prevent, { passive: false });
-    return () => overlay.removeEventListener("touchmove", prevent);
-  }, []);
-
-  function handleClose() {
-    // Start exit animation
-    setVisible(false);
-
-    setTimeout(() => {
-      // 1. Unlock scroll (restores scroll position synchronously)
-      unlockScroll();
-
-      // 2. Restore focus to the button that opened the modal
-      //    preventScroll: true ensures the browser does NOT re-scroll to it
-      if (triggerEl) {
-        triggerEl.focus({ preventScroll: true });
-      }
-
-      // 3. Remove modal from tree
-      onClose();
-    }, 280); // matches CSS transition duration
-  }
-
-  return createPortal(
-    <div
-      ref={overlayRef}
-      className={`pm-overlay${visible ? " pm-overlay--in" : ""}`}
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="pm-title-id"
-      onClick={(e) => {
-        if (e.target === overlayRef.current) handleClose();
-      }}
-    >
-      <div
-        ref={modalRef}
-        className={`pm-modal${visible ? " pm-modal--in" : ""}`}
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Close */}
-        <button
-          type="button"
-          className="pm-close"
-          aria-label="Close modal"
-          onClick={handleClose}
-        >
-          <FaTimes />
-        </button>
-
-        <div className="pm-body">
-          {/* Image */}
-          <div className="pm-image-side">
-            <img
-              src={project.image}
-              alt={project.title}
-              className="pm-img"
-            />
-          </div>
-
-          {/* Content */}
-          <div className="pm-content-side">
-            <h2 id="pm-title-id" className="pm-title">
-              {project.title}
-            </h2>
-            <p className="pm-description">{project.full}</p>
-
-            <div className="pm-tags">
-              {project.tech.map((t, i) => (
-                <span key={i}>{t}</span>
-              ))}
-            </div>
-
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noreferrer"
-              className="github-btn"
-            >
-              <FaGithub /> View GitHub
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>,
-    document.body
-  );
-}
-
 /* ─── Single card ────────────────────────────────────────────────────────── */
 
 function ProjectCard({ project, index, onOpen }) {
@@ -284,6 +172,8 @@ function ProjectCard({ project, index, onOpen }) {
             src={project.image}
             alt={project.title}
             className="project-img"
+            loading="lazy"
+            decoding="async"
           />
         </div>
 
@@ -365,11 +255,13 @@ function Projects() {
       </div>
 
       {activeProject && (
-        <ProjectModal
-          project={activeProject}
-          onClose={closeModal}
-          triggerEl={activeTrigger}
-        />
+        <Suspense fallback={<ModalFallback />}>
+          <ProjectModal
+            project={activeProject}
+            onClose={closeModal}
+            triggerEl={activeTrigger}
+          />
+        </Suspense>
       )}
     </section>
   );
