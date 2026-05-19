@@ -46,6 +46,7 @@
   border-radius: 50px;
   font-weight: 600;
   transition: 0.4s;
+  
 }
 
 .hero-btn {
@@ -55,6 +56,12 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
+        background:
+    linear-gradient(
+      135deg,
+      #ff4f8b,
+      #ff7ca8
+    );
 }
 
 .hero-btn:hover {
@@ -63,8 +70,8 @@
 }
 
 .hero-outline-btn {
-  border: 2px solid var(--pink5);
-  color: var(--pink5);
+  border: 2px solid var(--pink10);
+  color: var(--pink10);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -74,6 +81,12 @@
 .hero-outline-btn:hover {
   background: var(--pink5);
   color: white;
+        background:
+    linear-gradient(
+      135deg,
+      #ff4f8b,
+      #ff7ca8
+    );
 }
 
 /* ========================= */
@@ -93,6 +106,13 @@
   z-index: 10;
   animation: floatCard 4s ease-in-out infinite;
   will-change: transform;
+  background: var(--pink8);
+
+backdrop-filter: none;
+
+border: none;
+
+box-shadow: none;
 }
 
 .hero-avatar {
@@ -101,6 +121,7 @@
   border-radius: 50%;
   padding: 6px;
   background: linear-gradient(135deg, var(--pink5), var(--pink7));
+  
   display: flex;
   align-items: center;
   justify-content: center;
@@ -386,3 +407,4 @@
   }
 
 }
+

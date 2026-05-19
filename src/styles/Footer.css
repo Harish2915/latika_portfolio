@@ -33,7 +33,7 @@
   background:
     radial-gradient(
       circle,
-      rgba(255,255,255,0.18),
+      rgba(245, 74, 128, 0.18),
       transparent 70%
     );
 
@@ -80,6 +80,7 @@
   margin-bottom: 25px;
 
   letter-spacing: 1px;
+  
 }
 
 .footer-logo::after {
@@ -332,8 +333,12 @@
   transition:
     all 0.35s ease;
 
-  background:
-    rgba(255,255,255,0.08);
+        background:
+    linear-gradient(
+      135deg,
+      #ff4f8b,
+      #ff7ca8
+    );
 
   border:
     1px solid rgba(255,255,255,0.12);

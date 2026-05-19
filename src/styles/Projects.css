@@ -254,11 +254,7 @@ body.modal-open {
     The pink gradient lives HERE inside the modal box, not on the overlay.
     This is correct — it should never escape .pm-modal boundaries.
   */
-  background: linear-gradient(135deg,
-      var(--pink5, #ffd6e7),
-      var(--pink4, #ffb3cc),
-      var(--pink6, #ffe0ec),
-      var(--pink8, #fff0f5));
+background: var(--pink3);
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.28);
   scrollbar-width: none;
   /* Enter animation start state */

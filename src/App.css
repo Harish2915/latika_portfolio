@@ -233,6 +233,7 @@ section {
   color: #111;
 }
 
+
 /* ========================= */
 /* MOBILE PERFORMANCE MODE   */
 /* ========================= */
@@ -259,4 +260,28 @@ section {
     -webkit-backdrop-filter: none;
   }
 
+}
+
+/* ========================= */
+/* PERFORMANCE MODE — ALL SCREENS */
+/* ========================= */
+
+html,
+body {
+
+  /* Remove all gradients */
+
+  background-image: none !important;
+
+  /* Solid background */
+
+  background-color: var(--pink2) !important;
+
+}
+
+/* Remove heavy blur */
+
+.glass {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }
